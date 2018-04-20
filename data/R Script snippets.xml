@@ -1,0 +1,26 @@
+<snippets filetypes="R Script" authors="Giuffrida Pietro" name="R Script snippets" license="" namespace="">
+ <script>function fileName() { return document.fileName(); }
+function fileUrl() { return document.url(); }
+function encoding() { return document.encoding(); }
+function selection() { return view.selectedText(); }
+function year() { return new Date().getFullYear(); }
+function upper(x) { return x.toUpperCase(); }
+function lower(x) { return x.toLowerCase(); }
+</script>
+ <item>
+  <match>optparse</match>
+  <fillin>library("optparse")
+option_list = list(
+  make_option(c("-f", "--file"), type = "character", default=NULL,
+              help = "dataset file name", metavar = "character"),
+  make_option(c("-v", "--version"), type = "character", default = "noprof",
+              help = "output file name [default = %default]", metavar = "character"));
+
+opt_parser = OptionParser(option_list=option_list);
+opt = parse_args(opt_parser);</fillin>
+ </item>
+ <item>
+  <match>separatore</match>
+  <fillin># &lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>>&lt;&lt;>></fillin>
+ </item>
+</snippets>

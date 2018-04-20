@@ -1,0 +1,299 @@
+<snippets namespace="" authors="Giuffrida Pietro" name="Python snippets" license="" filetypes="Python">
+ <script>function fileName() { return document.fileName(); }
+function fileUrl() { return document.url(); }
+function encoding() { return document.encoding(); }
+function selection() { return view.selectedText(); }
+function year() { return new Date().getFullYear(); }
+function upper(x) { return x.toUpperCase(); }
+function lower(x) { return x.toLowerCase(); }
+</script>
+ <item>
+  <match>slogging</match>
+  <fillin>import logging
+logging.basicConfig(
+  format='%(asctime)s\t%(levelname)s\t%(message)s',
+  filename='default.log',
+  level=logging.INFO
+  #level=logging.DEBUG
+  )
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+
+logging.info('*'*20 + ' NUOVA ESECUZIONE ' + '*'*20)
+
+logging.info('*'*20 + ' ESCO NORMALMENTE ' + '*'*20)</fillin>
+ </item>
+ <item>
+  <match>python</match>
+  <fillin>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+if __name__ == "__main__":
+</fillin>
+ </item>
+ <item>
+  <match>mongopanda</match>
+  <fillin>import pandas as pd
+from pymongo import MongoClient
+
+mongo_config = {'host' : '212.7.78.33',
+                'port' : 27017,
+                'database': 'admin',
+                'user': "root",
+                "password": '3iononsomaperche',
+                }
+
+client = MongoClient(mongo_config['host'], mongo_config['port'])
+
+database = client[mongo_config['database']]
+database.authenticate(
+  mongo_config['user'],
+  mongo_config['3iononsomaperche'],
+  mechanism='SCRAM-SHA-1')
+
+database = client[]
+collection = db[]</fillin>
+ </item>
+ <item>
+  <match>fiscale</match>
+  <fillin>from codicefiscale import build
+import sys
+
+sys.path.append("/home/pietro/lcpy/")
+
+from geoLib import loadCatastali, loadNamesWithGenderDict, loadSurnames
+from geoLib import loadEuriskNames, loadEuriskSurnames
+from geoLib import bestMatch, splitNome, sesso
+
+catasto = loadCatastali()
+names_with_gender =  loadNamesWithGenderDict()
+surnames =  loadSurnames()</fillin>
+ </item>
+ <item>
+  <match>argparse</match>
+  <fillin>import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--modelli", dest="modelli", required=True,
+                    help="Il nome del modello applicato")
+parser.add_argument("--autore", dest="autore", required=True, choices=['gradi', 'metri'],
+                    help="Il nome dell'autore")
+parser.add_argument("--dataset", dest="dataset", required=True,
+                    help="Il nome del dataset su cui si sta lavorando")
+
+options = parser.parse_args()</fillin>
+ </item>
+ <item>
+  <match>sproxies</match>
+  <fillin>proxies = {'http' : 'http://212.7.78.33:3128',
+           'https' : 'http://212.7.78.33:3128'}</fillin>
+ </item>
+ <item>
+  <match>parallelize</match>
+  <fillin>from functools import partial
+import multiprocessing as mp
+
+with mp.Pool(2) as p:
+  mp.set_start_method('spawn')
+  download = partial(consulta)
+  p.map(download, lista)</fillin>
+ </item>
+ <item>
+  <match>subprocess</match>
+  <fillin>import subprocess
+proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#, cwd=)
+outs, errs = proc.communicate()
+proc.returncode</fillin>
+ </item>
+ <item>
+  <match>global_config</match>
+  <fillin>from crifbdapy.global_config import *</fillin>
+ </item>
+ <item>
+  <match>funzione</match>
+  <fillin>def name(args):
+
+  """ Desc
+
+      Args:
+         coord (dict):  Desc 
+
+      Returns:
+         coord (dict): Desc
+
+  """</fillin>
+ </item>
+ <item>
+  <match>proxies</match>
+  <fillin>proxies = {
+  'http': 'http://212.7.76.116:3128',
+  'https': 'http://212.7.76.116:3128',
+}</fillin>
+ </item>
+ <item>
+  <match>loggerwriter</match>
+  <fillin>import logging
+import sys
+from crifbdapy.logger_writer import LoggerWriter
+
+logging.basicConfig(
+  format='%(asctime)s\t%(levelname)s\t%(message)s',
+  filename='default.log',
+  level=logging.INFO
+  #level=logging.DEBUG
+  )
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+log = logging.getLogger()
+sys.stdout = LoggerWriter(log.debug)
+sys.stderr = LoggerWriter(log.warning)
+
+
+logging.info('*'*20 + ' NUOVA ESECUZIONE ' + '*'*20)
+
+logging.info('*'*20 + ' ESCO NORMALMENTE ' + '*'*20)</fillin>
+ </item>
+ <item>
+  <match>separatore</match>
+  <fillin># * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** **
+# 
+# * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** ** * *** ** **</fillin>
+ </item>
+ <item>
+  <match>spark_context_yarn</match>
+  <fillin>import pyspark
+from pyspark import SparkContext, SparkConf
+from pyspark.sql import SQLContext, Window
+from pyspark.sql.types import *
+import pyspark.sql.functions as F
+
+conf = SparkConf()
+conf.setAppName(config.appName)
+sc = SparkContext.getOrCreate(conf=conf)
+sqlContext = SQLContext(sc)
+log4jLogger = sc._jvm.org.apache.log4j
+logger = log4jLogger.LogManager.getLogger(config.appName)</fillin>
+ </item>
+ <item>
+  <match>spark_conf_local</match>
+  <fillin>import pyspark
+from pyspark import SparkContext, SparkConf
+from pyspark.sql import SQLContext, Window
+from pyspark.sql.types import *
+import pyspark.sql.functions as F
+
+magic = "5"
+conf = SparkConf()
+conf.setMaster("local[{}]".format(magic))
+conf.setExecutorEnv("cores", magic)
+conf.setExecutorEnv("memory", "5g")
+conf.setAppName('t29')
+SparkContext.setSystemProperty('spark.driver.cores', magic)
+SparkContext.setSystemProperty('spark.executor.memory', '5g')
+SparkContext.setSystemProperty('spark.driver.memory', '5g')
+SparkContext.setSystemProperty('spark.driver.maxResultSize', '4G')
+SparkContext.setSystemProperty("spark.memory.fraction", "0.9") # between 0 and 1
+SparkContext.setSystemProperty("spark.memory.storageFraction", "0.2") # 0-1
+SparkContext.setSystemProperty("spark.python.worker.memory", "2g") # max 2g
+SparkContext.setSystemProperty("spark.default.parallelism", magic)
+pyspark.StorageLevel(False, True, False, False, 1)
+sc = SparkContext.getOrCreate(conf=conf)
+sqlContext = SQLContext(sc)
+sqlContext.setConf("spark.sql.shuffle.partitions", magic)</fillin>
+ </item>
+ <item>
+  <match>user_agent</match>
+  <fillin>headers = {
+    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36",
+}</fillin>
+ </item>
+ <item>
+  <match>tornado_flask</match>
+  <fillin>from tornado.wsgi import WSGIContainer
+from tornado.ioloop import IOLoop
+from tornado.web import FallbackHandler, RequestHandler, Application
+
+from flask_environment import app
+
+
+class MainHandler(RequestHandler):
+  def get(self):
+    self.write("This message comes from Tornado ^_^")
+
+tr = WSGIContainer(app)
+
+application = Application([
+  (r"/tornado", MainHandler),
+  (r".*", FallbackHandler, dict(fallback=tr)),
+  ])
+
+if __name__ == "__main__":
+  application.listen(8000)
+  IOLoop.instance().start()</fillin>
+ </item>
+ <item>
+  <match>flask_env</match>
+  <fillin>from flask import send_file, make_response, abort, request, Flask
+import json
+
+app = Flask(__name__)
+
+@app.route('/test/&lt;val>', methods=['GET'])
+def test(val):
+  results = {'suggestions': 1}
+  response = make_response()
+  response.headers['Content-Type'] = 'application/octet-stream'
+  response.headers['Content-Disposition'] = 'attachment; filename=test'
+  response.set_data(json.dumps(results))
+  return response
+
+
+if __name__ == '__main__':
+  app.run(debug=True, port=8888)</fillin>
+ </item>
+ <item>
+  <match>salva_html</match>
+  <fillin>o = open('filename.html', 'w')
+o.write(r.text.encode('UTF-8'))
+o.close()</fillin>
+ </item>
+ <item>
+  <match>crwal</match>
+  <fillin>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import requests
+import logging
+from lxml import html
+from time import sleep
+from datetime import datetime
+
+from config import *
+from lib import *
+
+
+logging.basicConfig(
+  format='%(asctime)s\t%(levelname)s\t%(message)s',
+  filename='default.log',
+  level=logging.INFO
+  #level=logging.DEBUG
+  )
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+
+logging.info('*'*20 + ' NUOVA ESECUZIONE ' + '*'*20)
+
+r = requests.get(url, proxies=proxies, headers=headers)
+
+s = requests.Session()
+s.headers = headers
+s.proxies = proxies
+
+root = html.fromstring(r.text)
+
+logging.info('*'*20 + ' ESCO NORMALMENTE ' + '*'*20)
+</fillin>
+ </item>
+</snippets>
