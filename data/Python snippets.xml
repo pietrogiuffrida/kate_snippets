@@ -1,4 +1,4 @@
-<snippets namespace="" authors="Giuffrida Pietro" name="Python snippets" license="" filetypes="Python">
+<snippets namespace="" name="Python snippets" authors="Giuffrida Pietro" filetypes="Python" license="">
  <script>function fileName() { return document.fileName(); }
 function fileUrl() { return document.url(); }
 function encoding() { return document.encoding(); }
@@ -37,7 +37,7 @@ if __name__ == "__main__":
   <fillin>import pandas as pd
 from pymongo import MongoClient
 
-mongo_config = {'host' : '212.7.78.33',
+mongo_config = {'host' : '212.7.76.116',
                 'port' : 27017,
                 'database': 'admin',
                 'user': "root",
@@ -49,7 +49,7 @@ client = MongoClient(mongo_config['host'], mongo_config['port'])
 database = client[mongo_config['database']]
 database.authenticate(
   mongo_config['user'],
-  mongo_config['3iononsomaperche'],
+  mongo_config['password'],
   mechanism='SCRAM-SHA-1')
 
 database = client[]
@@ -263,6 +263,7 @@ o.close()</fillin>
   <fillin>#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import requests
 import logging
 from lxml import html
@@ -286,6 +287,10 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 logging.info('*'*20 + ' NUOVA ESECUZIONE ' + '*'*20)
 
 r = requests.get(url, proxies=proxies, headers=headers)
+if r.status_code != 200:
+  logging.error('STATUS CODE {0} FOR {1}'.format(r.status_code, url))
+  logging.error('ESCO IMMEDIATAMENTE!!')
+  os._exit(1)
 
 s = requests.Session()
 s.headers = headers
@@ -295,5 +300,16 @@ root = html.fromstring(r.text)
 
 logging.info('*'*20 + ' ESCO NORMALMENTE ' + '*'*20)
 </fillin>
+ </item>
+ <item>
+  <match>arrow</match>
+  <fillin>import pandas as pd
+import pyarrow
+
+table = pyarrow.Table.from_pandas(df)
+pyarrow.pq.write_table(table, 'example.parquet')
+
+table = pyarrow.pq.read_table('example.parquet')
+df = table.to_pandas()</fillin>
  </item>
 </snippets>
